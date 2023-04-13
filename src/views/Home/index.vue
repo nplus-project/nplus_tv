@@ -96,6 +96,19 @@ export default {
     window.onresize = function () {
       this.size = (document.documentElement.clientWidth / 100) * 8;
     };
+    document.addEventListener("fullscreenchange", this.handleFullscreenChange);
+    document.addEventListener(
+      "webkitfullscreenchange",
+      this.handleFullscreenChange
+    );
+    document.addEventListener(
+      "mozfullscreenchange",
+      this.handleFullscreenChange
+    );
+    document.addEventListener(
+      "MSFullscreenChange",
+      this.handleFullscreenChange
+    );
   },
   beforeDestroy() {
     if (this.timer) {
@@ -107,7 +120,26 @@ export default {
       this.timerTwo = null;
     }
   },
+  beforeRouteLeave(to, from, next) {
+    // 保存全屏状态
+    const isFullscreen =
+      document.fullscreenElement ||
+      document.webkitFullscreenElement ||
+      document.mozFullScreenElement ||
+      document.msFullscreenElement;
+    localStorage.setItem("isFullscreen", isFullscreen);
+    next();
+  },
   methods: {
+    handleFullscreenChange() {
+      // 记录全屏状态
+      const isFullscreen =
+        document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.mozFullScreenElement ||
+        document.msFullscreenElement;
+      localStorage.setItem("isFullscreen", isFullscreen);
+    },
     async handleBulletList() {
       let that = this;
       let res = await bulletList({

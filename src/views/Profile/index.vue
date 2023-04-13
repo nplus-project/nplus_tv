@@ -94,6 +94,19 @@ export default {
     this.loadingShow = false;
     this.handelBack();
 
+    const isFullscreen = localStorage.getItem("isFullscreen");
+    if (isFullscreen) {
+      const element = document.documentElement;
+      if (element.requestFullscreen) {
+        element.requestFullscreen();
+      } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+      } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+      } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+      }
+    }
     // todo
     // this.swiperOption.slidesPerView =
     //   document.documentElement.clientWidth / 380;

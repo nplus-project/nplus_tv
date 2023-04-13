@@ -87,6 +87,19 @@ export default {
       this.pauseTime = res.video_stop_time;
       this.duration = res.total_video_duration;
     }
+    const isFullscreen = localStorage.getItem("isFullscreen");
+    if (isFullscreen) {
+      const element = document.documentElement;
+      if (element.requestFullscreen) {
+        element.requestFullscreen();
+      } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+      } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+      } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+      }
+    }
   },
   name: "superPage",
   methods: {
