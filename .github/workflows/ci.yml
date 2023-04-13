@@ -55,10 +55,6 @@ jobs:
     # 指定虚拟机环境
     runs-on: ubuntu-latest
 
-    # 工作流程中作业的环境变量
-    env:
-      ENV_TEST: production
-    
     steps:
       - uses: actions/checkout@v3
       - run: echo "💡 The message ${{ github.ref_name }}"
