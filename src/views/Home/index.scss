@@ -1,0 +1,180 @@
+.login {
+  height: 100vh;
+  background-color: rgb(0, 0, 0);
+  position: relative;
+  overflow-y: hidden;
+
+  &-text {
+    position: absolute;
+    top: 131px;
+    left: 151px;
+    font-family: 'Montserrat';
+    font-style: italic;
+    font-weight: 900;
+    font-size: 215px;
+    line-height: 262px;
+    letter-spacing: 9px;
+    color: #FFFFFF;
+    text-shadow: 7px 10px 32px rgba(11, 65, 57, 0.56);
+  }
+
+  &-bg {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  &-video {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  &-box {
+    background: rgba(15, 0, 4, 0.57);
+    border: 2px solid rgba(93, 94, 99, 0.4);
+    border-top-left-radius: 2px solid rgba(93, 94, 99, 0.4);
+    width: 10vw !important;
+    height: 10vw !important;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border-radius: 32px;
+    overflow: hidden;
+    padding: 16px;
+    padding-bottom: 56px;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &-code {
+    width: 8vw;
+    padding: 15px;
+    background: #FFFFFF;
+    border-radius: 16px;
+  }
+}
+
+.code {
+  &-text {
+    width: 100%;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 27px;
+    line-height: 46px;
+    color: #FFFFFF;
+    text-align: center;
+    margin-bottom: 11px;
+  }
+}
+
+.detail_img {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  position: absolute;
+  top: 0;
+}
+
+.bottom {
+  width: 100%;
+  height: 500px;
+}
+
+.dmGroup {
+  position: absolute;
+  top: 140px;
+  left: 100%;
+  z-index: 10;
+  animation-timing-function: linear;
+  transform: translateZ(0);
+  white-space: nowrap;
+  height: 104px;
+  animation: dmAnimation;
+  animation-fill-mode: forwards;
+
+  &:first-of-type {
+    display: inherit
+  }
+}
+
+.dmItem {
+  display: inline-flex;
+  margin-right: 60px;
+  white-space: nowrap;
+}
+
+.dmItem .dm {
+  display: inline-flex;
+  vertical-align: middle;
+  align-items: center;
+  position: relative;
+  height: 104px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(189, 191, 197, 0.2);
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 56px;
+  line-height: 70px;
+  color: #F1F1F1;
+  border-radius: 104px;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 0 32px 0 12px;
+}
+
+.dmItem .avatarBox {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin-right: 12px;
+}
+
+.dmItem .avatarBox image {
+  width: 80px;
+  height: 80px;
+}
+
+.dmItem .avatarBox .avatar {
+  width: 80px;
+  height: 80px;
+  border: 2px solid rgba(133, 141, 153, 0.35);
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.dmItem .dm .content {
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 56px;
+  line-height: 70px;
+  color: #F1F1F1;
+
+  max-width: 2000px;
+  height: 70px;
+  margin-right: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@keyframes dmAnimation {
+  from {
+    left: 100%;
+  }
+
+  to {
+    left: -100%;
+  }
+}
+
+::v-deep .uni-video-container {
+  border-radius: 0 !important;
+}

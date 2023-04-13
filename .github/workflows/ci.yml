@@ -1,0 +1,89 @@
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
+
+name: publish-nplus-tv
+
+# 触发工作流程的事件,在分支发生push事件时触发
+on: [push]
+
+# 按顺序运行作业
+jobs:
+  publish-nplus-tv-test:
+    if: github.ref_name == 'develop'
+    # 指定虚拟机环境
+    runs-on: ubuntu-latest
+
+    # 工作流程中作业的环境变量
+    env:
+      ENV_TEST: test
+
+    steps:
+      - uses: actions/checkout@v3
+      - run: echo "💡 The message ${{ github.ref_name }}"
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "14"
+      - run: node -v
+
+      - name: Extract branch name
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      - run: echo "branch ${{steps.extract_branch.outputs.branch}}"
+
+      - name: Install yarn
+        run: npm i yarn -g
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build
+        run: yarn build:$ENV_TEST
+
+      - uses: manyuanrong/setup-ossutil@master
+        with:
+          endpoint: oss-cn-shenzhen.aliyuncs.com
+          access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+          access-key-secret: ${{ secrets.ACCESS_KEY_SECRET }}
+
+      - name: Deploy To OSS
+        run: ossutil cp dist oss://nplus-box-tv-stg/ -rf
+
+  publish-nplus-tv-pro:
+    if: github.ref_name == 'main'
+    # 指定虚拟机环境
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - run: echo "💡 The message ${{ github.ref_name }}"
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "14"
+      - run: node -v
+
+       - name: Extract branch name
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      - run: echo "branch ${{steps.extract_branch.outputs.branch}}"
+
+      - name: Install yarn
+        run: npm i yarn -g
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build
+        run: npm run build
+
+      - uses: manyuanrong/setup-ossutil@master
+        with:
+          endpoint: oss-cn-shenzhen.aliyuncs.com
+          access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+          access-key-secret: ${{ secrets.ACCESS_KEY_SECRET }}
+
+      - name: Deploy To OSS
+        run: ossutil cp dist oss://nplus-box-tv/ -rf
