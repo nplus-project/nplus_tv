@@ -7,7 +7,7 @@
       v-show="mp4Show"
       class="login-video"
       id="video"
-      src="require('@/assets/video/1.mp4')"
+      :src="require('@/assets/video/1.mp4')"
       autoplay
       muted
       controls
