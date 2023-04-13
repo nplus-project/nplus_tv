@@ -64,7 +64,7 @@ jobs:
           node-version: "14"
       - run: node -v
 
-       - name: Extract branch name
+      - name: Extract branch name
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
 
