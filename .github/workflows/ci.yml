@@ -50,40 +50,41 @@ jobs:
       - name: Deploy To OSS
         run: ossutil cp dist oss://nplus-box-tv-stg/ -rf
 
-  publish-nplus-tv-pro:
-    if: github.ref_name == 'main'
-    # 指定虚拟机环境
-    runs-on: ubuntu-latest
+  # publish-nplus-tv-pro:
+  #   if: github.ref_name == 'main'
+  #   # 指定虚拟机环境
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v3
-      - run: echo "💡 The message ${{ github.ref_name }}"
+  #   steps:
 
-      - uses: actions/setup-node@v3
-        with:
-          node-version: "14"
-      - run: node -v
+  #     - uses: actions/checkout@v3
+  #     - run: echo "💡 The message ${{ github.ref_name }}"
 
-       - name: Extract branch name
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-        id: extract_branch
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: "14"
+  #     - run: node -v
 
-      - run: echo "branch ${{steps.extract_branch.outputs.branch}}"
+  #      - name: Extract branch name
+  #       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+  #       id: extract_branch
 
-      - name: Install yarn
-        run: npm i yarn -g
+  #     - run: echo "branch ${{steps.extract_branch.outputs.branch}}"
 
-      - name: Install dependencies
-        run: yarn install
+  #     - name: Install yarn
+  #       run: npm i yarn -g
 
-      - name: Build
-        run: npm run build
+  #     - name: Install dependencies
+  #       run: yarn install
 
-      - uses: manyuanrong/setup-ossutil@master
-        with:
-          endpoint: oss-cn-shenzhen.aliyuncs.com
-          access-key-id: ${{ secrets.ACCESS_KEY_ID }}
-          access-key-secret: ${{ secrets.ACCESS_KEY_SECRET }}
+  #     - name: Build
+  #       run: npm run build
 
-      - name: Deploy To OSS
-        run: ossutil cp dist oss://nplus-box-tv/ -rf
+  #     - uses: manyuanrong/setup-ossutil@master
+  #       with:
+  #         endpoint: oss-cn-shenzhen.aliyuncs.com
+  #         access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+  #         access-key-secret: ${{ secrets.ACCESS_KEY_SECRET }}
+
+  #     - name: Deploy To OSS
+  #       run: ossutil cp dist oss://nplus-box-tv/ -rf
