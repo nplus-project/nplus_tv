@@ -55,7 +55,7 @@ import {
   fetchCode,
   fetchCodeStatus,
   bulletList,
-  screenDeatil,
+  // screenDeatil,
 } from "@/api/tv.js";
 import tvLoading from "@/components/tv-loading.vue";
 import vueQr from "vue-qr";
@@ -71,7 +71,7 @@ export default {
       timerTwo: null,
       fullScreen: false,
       mp4Show: true,
-      mp4Url: "",
+      mp4Url: require("@/assets/video/1.mp4"),
       bg: require("@/assets/bg.gif"),
       dmData: [],
       list: [],
@@ -161,10 +161,10 @@ export default {
     },
     async fetchInfo() {
       this.screenId = this.$route.query.id;
-      let res = await screenDeatil({
-        id: this.screenId,
-      });
-      this.mp4Url = res.video;
+      // let res = await screenDeatil({
+      //   id: this.screenId,
+      // });
+      // this.mp4Url = res.video;
     },
     async handleCodeCotent() {
       this.loadingShow = true;
