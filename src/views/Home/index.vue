@@ -7,7 +7,7 @@
       v-show="mp4Show"
       class="login-video"
       id="video"
-      :src="mp4Url"
+      src="require('@/assets/video/1.mp4')"
       autoplay
       muted
       controls
@@ -71,7 +71,6 @@ export default {
       timerTwo: null,
       fullScreen: false,
       mp4Show: true,
-      mp4Url: require("@/assets/video/1.mp4"),
       bg: require("@/assets/bg.gif"),
       dmData: [],
       list: [],
