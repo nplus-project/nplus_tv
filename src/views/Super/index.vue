@@ -84,7 +84,7 @@ export default {
       // let res = await productDetail({
       //   id: this.id,
       // });
-      this.avatar = query.image;
+      this.avatar = JSON.parse(decodeURIComponent(query.image));
       this.$refs.myVideo.play();
     }
     const isFullscreen = localStorage.getItem("isFullscreen");
