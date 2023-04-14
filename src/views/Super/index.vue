@@ -11,7 +11,7 @@
       @timeupdate="handleTimeUpdate"
     ></video>
     <div class="bullet" v-show="!videoShow">
-      <img :src="avatar" class="bullet-img" />
+      <img :src="avatar" class="bullet-image" />
       <div class="bullet-text">
         {{ content }}
       </div>
