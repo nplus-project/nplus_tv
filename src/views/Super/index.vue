@@ -105,10 +105,13 @@ export default {
   methods: {
     handleTimeUpdate(e) {
       const that = this;
-      if (e.target.currentTime >= this.duration) {
-        if (e.target.currentTime >= this.pauseTime) {
+      if (e.target.currentTime >= this.pauseTime) {
+        if (e.target.currentTime >= this.duration) {
           this.$router.push({
             path: "/",
+            query: {
+              id: encodeURIComponent(JSON.stringify(this.id)),
+            },
           });
         }
         if (!this.isEnter) {
