@@ -11,7 +11,7 @@
       @timeupdate="handleTimeUpdate"
     ></video>
     <div class="bullet" v-show="!videoShow">
-      <image :src="avatar" class="bullet-image"></image>
+      <img :src="avatar" class="bullet-img" />
       <div class="bullet-text">
         {{ content }}
       </div>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { productDetail } from "@/api/tv.js";
+// import { productDetail } from "@/api/tv.js";
 const dic = {
   6: {
     image: require("@/assets/bg/1.png"),
@@ -81,10 +81,10 @@ export default {
       this.url = info.video;
       this.pauseTime = info.video_stop_time;
       this.duration = info.total_video_duration;
-      let res = await productDetail({
-        id: this.id,
-      });
-      this.avatar = res.image;
+      // let res = await productDetail({
+      //   id: this.id,
+      // });
+      this.avatar = query.image;
       this.$refs.myVideo.play();
     }
     const isFullscreen = localStorage.getItem("isFullscreen");

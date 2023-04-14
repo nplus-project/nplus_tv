@@ -157,6 +157,7 @@ export default {
             this.$router.push({
               path: "/super",
               query: {
+                image: encodeURIComponent(JSON.stringify(item.user.avatar_url)),
                 content: encodeURIComponent(JSON.stringify(item.content)),
                 id: encodeURIComponent(JSON.stringify(item.product.id)),
               },
