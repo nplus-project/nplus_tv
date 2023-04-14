@@ -20,7 +20,7 @@
 </template>
 
 <script>
-// import { productDetail } from "@/api/tv.js";
+import { productDetail } from "@/api/tv.js";
 const dic = {
   6: {
     image: require("@/assets/bg/1.png"),
@@ -77,15 +77,15 @@ export default {
       let query = this.$route.query;
       this.content = JSON.parse(decodeURIComponent(query.content));
       this.id = JSON.parse(decodeURIComponent(query.id));
-      let res = dic[this.id];
-      // let res = await productDetail({
-      //   id: this.id,
-      // });
+      let info = dic[this.id];
+      this.url = info.video;
+      this.pauseTime = info.video_stop_time;
+      this.duration = info.total_video_duration;
+      let res = await productDetail({
+        id: this.id,
+      });
       this.avatar = res.image;
-      this.url = res.video;
       this.$refs.myVideo.play();
-      this.pauseTime = res.video_stop_time;
-      this.duration = res.total_video_duration;
     }
     const isFullscreen = localStorage.getItem("isFullscreen");
     if (isFullscreen) {
