@@ -7,7 +7,6 @@
       :src="url"
       autoplay
       muted
-      controls
       @timeupdate="handleTimeUpdate"
     ></video>
     <div class="bullet" v-show="!videoShow">

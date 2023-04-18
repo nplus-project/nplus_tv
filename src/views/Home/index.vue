@@ -10,7 +10,6 @@
       :src="require('@/assets/video/1.mp4')"
       autoplay
       muted
-      controls
       loop
     ></video>
     <img :src="bg" class="login-bg" v-show="!mp4Show" />
