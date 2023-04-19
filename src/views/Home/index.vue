@@ -7,7 +7,7 @@
       v-show="mp4Show"
       class="login-video"
       id="video"
-      :src="require('@/assets/video/1.mp4')"
+      :src="mp4Url"
       autoplay
       muted
       loop
@@ -54,7 +54,7 @@ import {
   fetchCode,
   fetchCodeStatus,
   bulletList,
-  // screenDeatil,
+  screenDeatil,
 } from "@/api/tv.js";
 import tvLoading from "@/components/tv-loading.vue";
 import vueQr from "vue-qr";
@@ -192,10 +192,10 @@ export default {
     },
     async fetchInfo() {
       this.screenId = this.$route.query.id;
-      // let res = await screenDeatil({
-      //   id: this.screenId,
-      // });
-      // this.mp4Url = res.video;
+      let res = await screenDeatil({
+        id: this.screenId,
+      });
+      this.mp4Url = res.video;
     },
     async handleCodeCotent() {
       this.loadingShow = true;

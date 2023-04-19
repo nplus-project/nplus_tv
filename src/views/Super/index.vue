@@ -19,45 +19,7 @@
 </template>
 
 <script>
-// import { productDetail } from "@/api/tv.js";
-const dic = {
-  6: {
-    image: require("@/assets/bg/1.png"),
-    is_published: true,
-    name: "chucky1",
-    price: "0.000000",
-    total_video_duration: 9,
-    video: require("@/assets/video/1.mp4"),
-    video_stop_time: 4,
-  },
-  7: {
-    image: require("@/assets/bg/2.png"),
-    is_published: true,
-    name: "chucky2",
-    price: "0.000000",
-    total_video_duration: 15,
-    video: require("@/assets/video/2.mp4"),
-    video_stop_time: 9,
-  },
-  8: {
-    image: require("@/assets/bg/3.png"),
-    is_published: true,
-    name: "chucky3",
-    price: "0.000000",
-    total_video_duration: 15,
-    video: require("@/assets/video/3.mp4"),
-    video_stop_time: 10,
-  },
-  9: {
-    image: require("@/assets/bg/4.png"),
-    is_published: true,
-    name: "chucky4",
-    price: "0.000000",
-    total_video_duration: 11,
-    video: require("@/assets/video/4.mp4"),
-    video_stop_time: 6,
-  },
-};
+import { productDetail } from "@/api/tv.js";
 export default {
   data() {
     return {
@@ -76,15 +38,14 @@ export default {
       let query = this.$route.query;
       this.content = JSON.parse(decodeURIComponent(query.content));
       this.id = JSON.parse(decodeURIComponent(query.id));
-      let info = dic[this.id];
-      this.url = info.video;
-      this.pauseTime = info.video_stop_time;
-      this.duration = info.total_video_duration;
-      // let res = await productDetail({
-      //   id: this.id,
-      // });
+      let res = await productDetail({
+        id: this.id,
+      });
       this.avatar = JSON.parse(decodeURIComponent(query.image));
+      this.url = res.video;
       this.$refs.myVideo.play();
+      this.pauseTime = res.video_stop_time;
+      this.duration = res.total_video_duration;
     }
     const isFullscreen = localStorage.getItem("isFullscreen");
     if (isFullscreen) {
@@ -109,7 +70,7 @@ export default {
           this.$router.push({
             path: "/",
             query: {
-              id: encodeURIComponent(JSON.stringify(this.id)),
+              id: 3,
             },
           });
         }
